@@ -9,7 +9,7 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <name>Enigma DrivCOM</name>
-  <description>Sistema PACS</description>
+  <description>DrivCOM - Sistema PACS</description>
   
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,9 +20,22 @@
 	<hsqldb.version>2.3.2</hsqldb.version>
 	<liquibase.version>3.4.2</liquibase.version>
 	<liquibase.hibernate.version>liquibase-hibernate4-3.6.1</liquibase.hibernate.version>
+	
+	<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+	<hibernate.driver>org.hsqldb.jdbcDriver</hibernate.driver>
+	<hibernate.url>jdbc:hsqldb:hsql://localhost/ecocardio</hibernate.url>
+	<hibernate.username>sa</hibernate.username>
+	<hibernate.password></hibernate.password>
+	<liquibase.context>development</liquibase.context>
   </properties>
   
   <dependencies>
+  	<!-- logging -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
   	<!-- Dcm4che -->
 	<dependency>
 		<groupId>org.dcm4che</groupId>
@@ -42,6 +55,21 @@
 	<dependency>
 		<groupId>org.dcm4che.tool</groupId>
 		<artifactId>dcm4che-tool-findscu</artifactId>
+		<version>3.3.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.dcm4che.tool</groupId>
+		<artifactId>dcm4che-tool-dcmqrscp</artifactId>
+		<version>3.3.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.dcm4che.tool</groupId>
+		<artifactId>dcm4che-tool-xml2dcm</artifactId>
+		<version>3.3.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.dcm4che.tool</groupId>
+		<artifactId>dcm4che-tool-dcm2xml</artifactId>
 		<version>3.3.7</version>
 	</dependency>
 	<dependency>
@@ -77,6 +105,16 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 			<version>${liquibase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
