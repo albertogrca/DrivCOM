@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-mar-2016 16:22:24 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.madrija.enigma.drivcom.model.Study" table="STUDY">
+        <id name="pid" type="long">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">study_id_seq</param>
+            </generator>
+        </id>
+        
+        <property name="oid" type="string" length="36">
+			<column name="oid"/>
+		</property>
+		
+        <property name="date" type="date" not-null="false">
+			<column name="date" />
+		</property>
+
+		<property name="time" type="time" not-null="false">
+			<column name="time" />
+		</property>
+
+		<property name="physician" type="string" not-null="false">
+			<column name="physician" />
+		</property>
+
+		<property name="accesionNumber" type="string" not-null="false">
+			<column name="accesionNumber" />
+		</property>
+		
+		<set name="series" table="SERIES" lazy="false" inverse="true" cascade="all,delete-orphan">
+            <key>
+                <column name="study" not-null="true" />
+            </key>
+            <one-to-many class="com.madrija.enigma.drivcom.model.Series" />
+        </set>
+
+		<many-to-one name="patient" not-null="true" cascade="save-update" />
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-mar-2016 16:22:24 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.madrija.enigma.drivcom.model.Patient" table="PATIENT">
+        <id name="pid" type="long">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">patient_id_seq</param>
+            </generator>
+        </id>
+        
+        <property name="oid" type="string" length="36">
+			<column name="oid"/>
+		</property>
+		
+        <property name="name" type="string" not-null="false">
+			<column name="name" />
+		</property>
+		
+		<property name="surname" type="string" not-null="false">
+			<column name="surname" />
+		</property>
+
+		<property name="birthDate" type="date" not-null="false">
+			<column name="birthDate" />
+		</property>
+
+		<property name="sex" type="string" not-null="false">
+			<column name="sex" />
+		</property>
+		
+		<set name="studies" table="STUDIES" lazy="false" inverse="true" cascade="all,delete-orphan">
+            <key>
+                <column name="patient" not-null="true" />
+            </key>
+            <one-to-many class="com.madrija.enigma.drivcom.model.Study" />
+        </set>
+    </class>
+</hibernate-mapping>

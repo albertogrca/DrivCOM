@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-mar-2016 16:22:24 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.madrija.enigma.drivcom.model.Series" table="SERIES">
+        <id name="pid" type="long">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">series_id_seq</param>
+            </generator>
+        </id>
+        
+        <property name="oid" type="string" length="36">
+			<column name="oid"/>
+		</property>
+		
+        <property name="number" type="int" not-null="false">
+			<column name="number" />
+		</property>
+
+		<property name="modality" type="string" not-null="false">
+			<column name="modality" />
+		</property>
+		
+		<set name="images" table="IMAGE" lazy="false" inverse="true" cascade="all,delete-orphan">
+            <key>
+                <column name="series" not-null="true" />
+            </key>
+            <one-to-many class="com.madrija.enigma.drivcom.model.Image" />
+        </set>
+        
+		<many-to-one name="study" not-null="true" cascade="save-update" />
+    </class>
+</hibernate-mapping>
