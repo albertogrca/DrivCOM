@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="drivcom">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
+        <dependent-module archiveName="dcm4che-core-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-core/dcm4che-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-dict-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-dict/dcm4che-dict">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-net-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-net/dcm4che-net">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-conf-core-api-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-conf-core-api/dcm4che-conf-core-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-tool-common-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-tool-common/dcm4che-tool-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-tool-findscu-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-tool-findscu/dcm4che-tool-findscu">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-tool-dcmqrscp-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-tool-dcmqrscp/dcm4che-tool-dcmqrscp">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-tool-xml2dcm-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-tool-xml2dcm/dcm4che-tool-xml2dcm">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-tool-dcm2xml-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-tool-dcm2xml/dcm4che-tool-dcm2xml">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-tool-storescu-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-tool-storescu/dcm4che-tool-storescu">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-imageio-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-imageio/dcm4che-imageio">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dcm4che-image-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dcm4che-image/dcm4che-image">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="drivcom"/>
+        <property name="java-output-path" value="/DrivCOM/target/classes"/>
+    </wb-module>
+</project-modules>

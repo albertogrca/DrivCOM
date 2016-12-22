@@ -5,7 +5,7 @@
   
   <groupId>com.madrija.enigma</groupId>
   <artifactId>drivcom</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
   <name>Enigma DrivCOM</name>
@@ -23,7 +23,7 @@
 	
 	<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
 	<hibernate.driver>org.hsqldb.jdbcDriver</hibernate.driver>
-	<hibernate.url>jdbc:hsqldb:hsql://localhost/ecocardio</hibernate.url>
+	<hibernate.url>jdbc:hsqldb:hsql://localhost/drivcom</hibernate.url>
 	<hibernate.username>sa</hibernate.username>
 	<hibernate.password></hibernate.password>
 	<liquibase.context>development</liquibase.context>
@@ -75,6 +75,11 @@
 	<dependency>
 		<groupId>org.dcm4che.tool</groupId>
 		<artifactId>dcm4che-tool-storescu</artifactId>
+		<version>3.3.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.dcm4che.tool</groupId>
+		<artifactId>dcm4che-tool-storescp</artifactId>
 		<version>3.3.7</version>
 	</dependency>
 	
@@ -142,66 +147,49 @@
 	</repository>
   </repositories>
   
+  
   <build>
-  	<finalName>${project.artifactId}</finalName>
-  	<plugins>
-  		<plugin>
-	  		<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-eclipse-plugin</artifactId>
-			<version>2.10</version>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.5.1</version>
-			<configuration>
-				<source>8</source>
-				<target>8</target>
-			</configuration>
-		</plugin>
-		<plugin>
-			<!-- liquibase management -->
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-maven-plugin</artifactId>
-			<configuration>
-				<propertyFile>target/classes/liquibase.properties</propertyFile>
-			</configuration>
-			<dependencies>
-				<dependency>
-					<groupId>org.hsqldb</groupId>
-					<artifactId>hsqldb</artifactId>
-					<version>${hsqldb.version}</version>
-				</dependency>
-				<dependency>
-				    <groupId>com.github.malaguna</groupId>
-				    <artifactId>liquibase-hibernate</artifactId>
-				    <version>liquibase-hibernate4-3.6.1</version>
-				</dependency>
-				<dependency>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-orm</artifactId>
-					<version>${spring.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-context-support</artifactId>
-					<version>${spring.version}</version>
-				</dependency>
-			</dependencies>
-		</plugin>
-  	</plugins>
-  	
-  	<pluginManagement>
+		<finalName>${project.artifactId}</finalName>
+		<!-- filtrado de recursos del classpath -->
+ 		<resources>
+ 			<resource>
+ 				<filtering>true</filtering>
+ 				<directory>src/main/resources</directory>
+ 				<includes>
+ 					<include>spring/app-drivcom.xml</include>
+ 				</includes>
+ 			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
+				<!-- liquibase management -->
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>${liquibase.version}</version>
+				<version>3.4.2</version>
+				<configuration>
+					<skip>false</skip>
+					<changeLogFile>src/main/resources/changelog.xml</changeLogFile>
+					<diffChangeLogFile>${project.basedir}/src/main/resources/autolog-${project.version}-${user.name}-${timestamp}.xml</diffChangeLogFile>
+					<driver>${hibernate.driver}</driver>
+					<url>${hibernate.url}</url>
+					<username>${hibernate.username}</username>
+					<password>${hibernate.password}</password>
+					<referenceUrl>${hibernate.url}</referenceUrl>
+					<contexts>development</contexts>
+					<verbose>true</verbose>
+					<dropFirst>false</dropFirst>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
 				<configuration>
 					<skip>true</skip>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
-	</pluginManagement>	
-  </build>
+	</build>
 </project>
