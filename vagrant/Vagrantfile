@@ -82,14 +82,8 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   
   config.vm.provision "shell", inline: <<-SHELL
-     yum install /vagrant/software/jdk-8u101-linux-x64.rpm -y
-	SHELL
-  
-  config.vm.provision "shell", inline: <<-SHELL
-	 yum install git -y
-	 git clone https://github.com/dcm4che/dcm4che.git
-	 wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
-	 yum install apache-maven
+	 mkdir dcm4che
+	 cp /software/* /home/vagrant/dcm4che/
 	SHELL
 
 end
