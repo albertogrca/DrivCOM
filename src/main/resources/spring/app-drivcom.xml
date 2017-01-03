@@ -36,7 +36,6 @@
 
 		<property name="mappingLocations">
 			<list>
-
 				<!--  Mapeos de concile -->
 				<value>classpath:/com/madrija/enigma/drivcom/model/Patient.hbm.xml</value>
 				<value>classpath:/com/madrija/enigma/drivcom/model/Image.hbm.xml</value>
