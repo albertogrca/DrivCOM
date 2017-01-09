@@ -1,2 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"/>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Alberto" id="1483643367053-6">
+        <createTable tableName="PATIENT">
+             <column name="pid" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PATIENTPK"/>
+            </column>
+            <column name="oid" type="VARCHAR(36)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="birthDate" type="date"/>
+            <column name="sex" type="VARCHAR(255)"/>
+        </createTable>
+        
+        <createSequence sequenceName="patient_id_seq"/>
+    </changeSet>
+    
+    <changeSet author="Alberto" id="1483643367053-8">
+        <createTable tableName="STUDY">
+             <column name="pid" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="STUDYPK"/>
+            </column>
+            <column name="oid" type="VARCHAR(36)"/>
+            <column name="date" type="date"/>
+            <column name="time" type="time"/>
+            <column name="physician" type="VARCHAR(255)"/>
+            <column name="accesionNumber" type="VARCHAR(255)"/>
+            <column name="patient" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createSequence sequenceName="study_id_seq"/>
+        
+        <addForeignKeyConstraint baseColumnNames="patient" baseTableName="STUDY" constraintName="FK_STUDY_PATIENT" deferrable="false" initiallyDeferred="false" referencedColumnNames="pid" referencedTableName="PATIENT"/>
+    </changeSet>
+    
+    <changeSet author="Alberto" id="1483643367053-7">
+        <createTable tableName="SERIES">
+             <column name="pid" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="SERIESPK"/>
+            </column>
+            <column name="oid" type="VARCHAR(36)"/>
+            <column name="number" type="INT"/>
+            <column name="modality" type="VARCHAR(255)"/>
+            <column name="study" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createSequence sequenceName="series_id_seq"/>
+        
+        <addForeignKeyConstraint baseColumnNames="study" baseTableName="SERIES" constraintName="FK_SERIES_STUDY" deferrable="false" initiallyDeferred="false" referencedColumnNames="pid" referencedTableName="STUDY"/>
+    </changeSet>
+    
+    <changeSet author="Alberto" id="1483643367053-5">
+        <createTable tableName="IMAGE">
+            <column name="pid" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="IMAGEPK"/>
+            </column>
+            <column name="oid" type="VARCHAR(36)"/>
+            <column name="number" type="BIGINT"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="series" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createSequence sequenceName="image_id_seq"/>
+        
+        <addForeignKeyConstraint baseColumnNames="series" baseTableName="IMAGE" constraintName="FK_SERIES_IMAGE" deferrable="false" initiallyDeferred="false" referencedColumnNames="pid" referencedTableName="SERIES"/>
+    </changeSet>
+        
+</databaseChangeLog>

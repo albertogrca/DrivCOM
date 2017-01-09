@@ -1,4 +1,4 @@
-package com.madrija.enigma.drivcom.service;
+package com.madrija.enigma.drivcom;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -15,7 +15,10 @@ import org.dcm4che3.net.Device;
 import org.dcm4che3.net.IncompatibleConnectionException;
 import org.dcm4che3.net.Priority;
 import org.dcm4che3.net.pdu.AAssociateRQ;
-import org.dcm4che3.tool.storescu.StoreSCU;
+
+import com.madrija.enigma.drivcom.service.StoreSCPReceive;
+import com.madrija.enigma.drivcom.service.StoreSCUSend;
+
 
 public class Start {
 	
@@ -43,19 +46,54 @@ public class Start {
 	
 	public static void main(String[] args) throws IOException {
 		System.out.println("¡¡¡¡Bienvenido a DrivCOM!!!!");
-		System.out.println("1. Store SCP.");
+		System.out.println("1. Store SCU.");
+		System.out.println("2. Store SCP.");
 		
 		int op = sc.nextInt();
 		if(op == 1){
 			send();
 			
 		}
+		if(op == 2){
+			receive();
+		}
 		
 	}
 	
+	private static void receive() {
+		StoreSCPReceive scp = new StoreSCPReceive();
+		System.out.println("****************************************************");
+		System.out.println("********************  STORESCP  ********************");
+		System.out.println("****************************************************");
+		System.out.print("Introduce el AETitle: ");
+		scp.setAet(sc.next());
+		System.out.print("Introduce el puerto: ");
+		scp.setPort(sc.nextInt());
+		if(scp.startReceive())
+			System.out.println("Se ha enviado correctamente el archivo");
+		else
+			System.out.println("Ha habido algún error al enviar el archivo");
+		
+	}
+
 	private static void send() throws IOException {
-		String[] args = {"-c DVTK_QR_SCU@localhost:106","C:\\Users\\Mountain\\git\\DrivCOM\\data\\d1I00001.dcm"};	
-		StoreSCU.main(args);
+		StoreSCUSend scu = new StoreSCUSend();
+		System.out.println("****************************************************");
+		System.out.println("********************  STORESCU  ********************");
+		System.out.println("****************************************************");
+		System.out.print("Introduce el AETitle: ");
+		scu.setAet(sc.next());
+		System.out.print("Introduce el Host: ");
+		scu.setHost(sc.next());
+		System.out.print("Introduce el puerto: ");
+		scu.setPort(sc.nextInt());
+		System.out.print("Introduce la ruta del archivo: ");
+		scu.setPath(sc.next());
+		if(scu.startSend())
+			System.out.println("Se ha enviado correctamente el archivo");
+		else
+			System.out.println("Ha habido algún error al enviar el archivo");
+		
 		//String[] args2={"-b STORESCP:11112"};
 		//StoreSCP.main(args2);
 	}

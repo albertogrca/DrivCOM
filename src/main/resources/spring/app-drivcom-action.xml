@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="actionHelperConnect" class="com.madrija.enigma.connect.model.ActionHelper">
+		<property name="actionMap">
+			<map>
+				<entry>
+					<key>
+						<util:constant static-field="com.madrija.enigma.drivcom.model.ActionHelper.STUDY_MGT" />
+					</key>
+					<value>
+						Gestión de los estudios
+					</value>
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.madrija.enigma.drivcom.model.ActionHelper.SERIES_MGT" />
+					</key>
+					<value>
+						Gestión de las Series
+					</value>
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.madrija.enigma.drivcom.model.ActionHelper.IMAGE_MGT" />
+					</key>
+					<value>
+						Gestión de las Imagenes
+					</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -44,4 +44,15 @@
 			</list>
 		</property>
 	</bean>	
+	
+	<!-- Configuración del template DAO -->
+	<bean id="daoTemplate" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="messages" ref="msgSource" />
+	</bean>
+
+	<!-- Configuraciones de DAOs -->
+	<bean id="studyDAO" class="com.madrija.enigma.drivcom.dao.StudyDAO" parent="daoTemplate" />
+	<bean id="seriesDAO" class="com.madrija.enigma.drivcom.dao.SeriesDAO" parent="daoTemplate" />
+	<bean id="imageDAO" class="com.madrija.enigma.drivcom.dao.ImageDAO" parent="daoTemplate" />
 </beans>

@@ -158,6 +158,13 @@
  					<include>spring/app-drivcom.xml</include>
  				</includes>
  			</resource>
+ 			<resource>
+ 				<filtering>false</filtering>
+ 				<directory>src/main/resources</directory>
+ 				<excludes>
+ 					<exclude>spring/app-drivcom.xml</exclude>
+ 				</excludes>
+ 			</resource>
 		</resources>
 
 		<plugins>
@@ -174,11 +181,38 @@
 					<url>${hibernate.url}</url>
 					<username>${hibernate.username}</username>
 					<password>${hibernate.password}</password>
-					<referenceUrl>${hibernate.url}</referenceUrl>
+					<referenceUrl>hibernate:spring:spring/app-drivcom.xml?bean=sessionFactory</referenceUrl>
 					<contexts>development</contexts>
 					<verbose>true</verbose>
 					<dropFirst>false</dropFirst>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.madrija.enigma</groupId>
+  						<artifactId>drivcom</artifactId>
+  						<version>0.0.1-SNAPSHOT</version>
+					</dependency>
+					<dependency>
+						<groupId>org.hsqldb</groupId>
+						<artifactId>hsqldb</artifactId>
+						<version>2.3.2</version>
+					</dependency>
+					<dependency>
+					    <groupId>com.github.malaguna</groupId>
+					    <artifactId>liquibase-hibernate</artifactId>
+					    <version>liquibase-hibernate4-3.6.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-orm</artifactId>
+						<version>4.1.6.RELEASE</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context-support</artifactId>
+						<version>4.1.6.RELEASE</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
