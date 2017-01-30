@@ -132,13 +132,17 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.github.malaguna</groupId>
-			<artifactId>cmdit</artifactId>
-			<version>-SNAPSHOT</version>
+	    	<groupId>com.github.malaguna</groupId>
+	    	<artifactId>cmdit</artifactId>
+	    	<version>1.0</version>
 		</dependency>
   </dependencies>
   
   <repositories>
+  	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
   	<repository>
     	<id>www.dcm4che.org</id>
     	<name>dcm4che Repository</name>
